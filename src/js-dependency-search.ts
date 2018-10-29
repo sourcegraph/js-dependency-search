@@ -23,8 +23,8 @@ export function activate(): void {
                 (line, lineNumber) => {
                     // An issue with the second regex is that it'll match lines like
                     //  return "string"
-                    const goPkgRegex = /^import\s.*\'([\w\/]*)[/?^\\s]*\'|require\(\'([^\s]*)[^\\s]*\'\)/
-                    const match = goPkgRegex.exec(line);
+                    const jsPkgRegex = /^import\s.*\'([\w\/]*)[/?^\s]*\'|require\(\'([^\s]*)[^\s]*\'\)/
+                    const match = jsPkgRegex.exec(line);
                     if (match && match.length >= 1) {
                         // For commonJS imports, match[1] is undefined
                         const pkgName = match[1] ? match[1] : match[2]
