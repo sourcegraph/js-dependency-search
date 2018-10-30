@@ -25,8 +25,8 @@ export function activate(): void {
                     //  return "string"
                     const jsPkgRegex = /^import\s.*\'([\w\/]*)[/?^\s]*\'|require\(\'([^\s]*)[^\s]*\'\)/
                     const match = jsPkgRegex.exec(line);
-                    if (match && match.length >= 1) {
-                        // For commonJS imports, match[1] is undefined
+                    if (match && match.length > 1) {
+                        // The match index depends on which regex pattern actually produced a match
                         const pkgName = match[1] ? match[1] : match[2]
                         return of({lineNumber, pkgName});
                     }
