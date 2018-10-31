@@ -18,6 +18,9 @@ export function activate(): void {
    })
 
     sourcegraph.workspace.onDidOpenTextDocument.subscribe(doc => {
+        if (doc.languageId !== 'typescript' && doc.languageId !== 'javascript') {
+            return
+        }
         from(doc.text.split('\n')).pipe(
             concatMap(
                 (line, lineNumber) => {
